@@ -6,7 +6,6 @@ import {
   ApolloProvider,
   createHttpLink,
 } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
 
 import { setContext } from '@apollo/client/link/context';
 import SearchBooks from './pages/SearchBooks';
@@ -43,11 +42,11 @@ function App() {
         <Navbar />
           <Routes>
             <Route 
-              path='/' 
+              path='/' component={SearchBooks}
               element={<SearchBooks />} 
             />
             <Route 
-              path='/saved' 
+              path='/saved' component={SavedBooks}
               element={<SavedBooks />} 
             />
             <Route 

@@ -29,7 +29,7 @@ const resolvers = {
 
 
         login: async (parent, { email, password }) => {
-            const user = await Profile.findOne({ email });
+            const user = await User.findOne({ email });
       
             if (!user) {
               throw new AuthenticationError('No user with this email found!');
@@ -47,15 +47,15 @@ const resolvers = {
    
 
 
-        saveBook: async (parent, {userBooks}, context) => {
+        saveBook: async (parent, {input}, context) => {
             if (context.user) {
-                const addUserBook = await User.findByIdAndUpdate(
+                const userData = await User.findByIdAndUpdate(
                     {_id: context.user._id},
-                    {$push: {savedBooks: userBooks} },
+                    {$push: {savedBooks: input} },
                     {new: true}
                 );
 
-                return addUserBook;
+                return userData;
             }
             throw new AuthenticationError('You need to be logged in!');
         },
