@@ -7,4 +7,8 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/searchengineDB'
 
 });
 
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+
 module.exports = mongoose.connection;
